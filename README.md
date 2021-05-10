@@ -3,7 +3,9 @@
 ```
     docker-compose build
     docker-compose up -d
+    docker-compose exec service composer installw
     docker-compose exec service bash
+    composer install
     echo y |./bin/console d:m:m 
 ```
 

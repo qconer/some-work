@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: user
+      POSTGRES_DB: test
+    ports:
+    - 5433:5432
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - 16379:6379
+
+  service:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - ./.env
+    environment:
+      - LOCAL_ENV=1
+      - "PHP_IDE_CONFIG=serverName=localhost"
+    volumes:
+      - ./:/var/www
+    tty: true
+    ports:
+      - 8180:80
+    depends_on:
+      - db
+      - redis
+    links:
+      - db

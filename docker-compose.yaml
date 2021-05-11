@@ -11,6 +11,7 @@ services:
     ports:
     - 5433:5432
 
+# зачем тут редис? так и не нашел где он используется
   redis:
     image: redis
     restart: always

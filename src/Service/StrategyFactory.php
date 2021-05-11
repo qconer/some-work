@@ -11,7 +11,7 @@ use JetBrains\PhpStorm\Pure;
 
 class StrategyFactory
 {
-    #[Pure] public function create(string $strategyName): ?GameStrategyInterface
+    #[Pure] public function create(string $strategyName): ?GameStrategyInterface // почему nullable? тут какой-то LogicException если пытаемся создать несуществующую strategy. ну или обработку добавить где используется
     {
         return match ($strategyName) {
             GameObjectsEnum::STONE => (new StoneStrategy()),

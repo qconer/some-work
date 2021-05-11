@@ -24,7 +24,7 @@ class GameRunCommand extends Command
     protected static $defaultDescription = 'the command that launches the game "Цу-е-фа"';
 
     public function __construct(
-        string $name = null,
+        string $name = null, // optional перед обязательными. это должно быть в конце
         private DetermineWinner $determineWinner,
         private EntityManagerInterface $entityManager,
         private JsonReport $jsonReport,
@@ -59,11 +59,14 @@ class GameRunCommand extends Command
         $progressBar->start();
 
         for ($i = 1; $i <= $gameCount; ++$i) {
+            // при gameCount 10050000 не хватит памяти все это хранить в uof
+            // у меня при --game-rounds=7000 не хватило памяти уже
             $game = (new Game())->setGameSet($gameSet);
 
             $leftPlayerChoice = $this->playerChoiceFactory->getPlayerChoice($game, UserSideEnum::LEFT, $allRandom);
-            $rightPlayerChoice = $this->playerChoiceFactory->getPlayerChoice(game: $game, userSide: UserSideEnum::RIGHT);
+            $rightPlayerChoice = $this->playerChoiceFactory->getPlayerChoice(game: $game, userSide: UserSideEnum::RIGHT); // зачем тут named arguments? выше нету
 
+            // если вдруг нужно для 2+ игроков реализовывать - кучу кода нужно будет переписать
             $winner = $this->determineWinner->handler($leftPlayerChoice->getChoice(), $rightPlayerChoice->getChoice());
 
             $game->setWinner($winner);
@@ -80,13 +83,14 @@ class GameRunCommand extends Command
         $this->entityManager->flush();
 
         match ($reportFormat) {
+            // почему методы get? они по факту делают output
             ReportTypeEnum::CONSOLE => $this->consoleReport->get($gameSet, $input, $output),
             ReportTypeEnum::JSON => $this->jsonReport->get($gameSet, $output),
         };
 
         $progressBar->finish();
 
-        $this->entityManager->refresh($gameSet);
+        $this->entityManager->refresh($gameSet); // а это для чего?
 
         return 0;
     }

@@ -20,7 +20,7 @@ class PlayerChoiceFactory
     {
         $gameObject = GameObjectsEnum::getAll();
         return $allRandom ?
-            $gameObject[rand(0, count($gameObject) -1 )] :
-            GameObjectsEnum::PAPER ;
+            $gameObject[rand(0, count($gameObject) - 1 )] : // array_rand?
+            GameObjectsEnum::PAPER ; // это не гибко. что если мне нужна новая стратегия (например только ROCK)?
     }
 }

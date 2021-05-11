@@ -10,7 +10,7 @@ class DetermineWinner
         private StrategyFactory $strategyFactory
     ) {}
 
-    public function handler(
+    public function handler( // при наименовании методов желательно использовать глагол. handle ни о чем не говорит
         string $leftPlayerChoice,
         string $rightPlayerChoice,
 

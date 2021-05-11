@@ -29,7 +29,7 @@ class GameSet
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private DateTimeInterface $finish;
+    private DateTimeInterface $finish; // нету дефолтного значения. (new GameSet())->getFinish() даст ошибку
 
     /**
      * @ORM\Column(type="integer")
@@ -57,7 +57,7 @@ class GameSet
     }
 
     /**
-     * @throws \Exception
+     * @throws \Exception // почему?
      */
     public function setStart(DateTimeInterface $start): self
     {
@@ -66,7 +66,7 @@ class GameSet
         return $this;
     }
 
-    public function getFinish(): ?DateTimeInterface
+    public function getFinish(): ?DateTimeInterface // не nullable судя по декларации
     {
         return $this->finish;
     }
@@ -78,7 +78,7 @@ class GameSet
         return $this;
     }
 
-    public function getGameCount(): ?int
+    public function getGameCount(): ?int // почему nullable? у тебя же private int $gameCount
     {
         return $this->gameCount;
     }

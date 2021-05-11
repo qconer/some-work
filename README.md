@@ -3,10 +3,10 @@
 ```
     docker-compose build
     docker-compose up -d
-    docker-compose exec service composer installw
+    docker-compose exec service composer install
     docker-compose exec service bash
-    composer install
-    echo y |./bin/console d:m:m 
+    composer install # зачем дважды composer insatall?
+    echo y |./bin/console d:m:m  # bin/console d:m:m --no-interaction или bin/console d:m:m -n
 ```
 
 ###How to play

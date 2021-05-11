@@ -42,7 +42,7 @@ class PlayerChoice
         return $this->playerSide;
     }
 
-    public function setPlayerSide(string $playerSide): PlayerChoice
+    public function setPlayerSide(string $playerSide): PlayerChoice // :self. причем в некоторых классах норм, а тут className
     {
         $this->playerSide = $playerSide;
         return $this;

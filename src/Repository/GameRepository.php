@@ -25,7 +25,7 @@ class GameRepository extends ServiceEntityRepository
             ->createQueryBuilder('g')
             ->select('g.winner, count(g.id) as count')
             ->where('g.gameSet = :gsi')
-            ->setParameter('gsi', $gameSetId)
+            ->setParameter('gsi', $gameSetId) // можно было объект сюда передать. доктрина так умеет. а там где есть только айди в коде, то доставать через getReference
             ->groupBy('g.winner')
             ->getQuery()
             ->getResult();

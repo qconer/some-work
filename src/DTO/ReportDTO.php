@@ -16,9 +16,10 @@ class ReportDTO implements ReportInterface
     private int $choiceCountStone;
     private int $choiceCountScissors;
 
+    // getRate?
     private function getReit(int $gamesCount, int $count): float
     {
-        return round(($count / $gamesCount) * 100, 2);
+        return round(($count / $gamesCount) * 100, 2); // Division by zero gamesCount 0
     }
 
     #[Pure] public function getWinRateLeftPlayer(): float
@@ -56,7 +57,7 @@ class ReportDTO implements ReportInterface
     public function getWinsCountRightPlayer(): int
     {
         return $this->winsCountRightPlayer;
-    }public function getDrawsCount(): int
+    }public function getDrawsCount(): int // что с кодстайлом?
 {
     return $this->drawsCount;
 }

@@ -9,6 +9,8 @@
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
+### весь vendor от phpunit заехал в репозиторий
+.phpunit
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###

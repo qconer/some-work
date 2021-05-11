@@ -16,6 +16,6 @@ class StartRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Start::class);
+        parent::__construct($registry, Start::class); // такой Entity нету. мертвый код в репе
     }
 }

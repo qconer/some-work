@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class GenerateReport
 {
     public function __construct(
-        private EntityManagerInterface $entityManager,
+        private EntityManagerInterface $entityManager, // зачем тут целый entityManager? можно было обойтись репозиториями. они у тебя extends ServiceEntityRepository
         private ReportInterface $report
     ) {}
 

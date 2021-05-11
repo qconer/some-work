@@ -4,7 +4,7 @@
 namespace App\Interfaces;
 
 
-interface GameResultInterface
+interface GameResultInterface // мусор? никто не имплементирует
 {
     public function getGameNumber(): int;
     public function getLeftPlayerChoice(): string;
